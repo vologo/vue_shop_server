@@ -1,7 +1,7 @@
 {
     "apps": [
-        "name": "movie", //对应Nginx上的配置
-        "script": "app.js", //入口文件
+        "name": "shop",
+        "script": "app.js",
         "env": {
             "COMON_VARIABLE": "true"
         },
@@ -11,14 +11,13 @@
     ],
     "deploy": {
         "production": {
-            "user": "poetries", //Nginx服务器上的username
-            "host": ["120.120.14.21"], // 服务器地址
-            "port": "3922",
-            "ref": "origin/master", //从指定的分支拉取代码
-            "repo": "git@github.com:poetries/poetries.github.io.git",
-            "path": "/www/movie/production",//发布到服务器指定的目录下
+            "user": "tomcat",
+            "host": ["47.101.49.23"],
+            "port": "31580",
+            "ref": "origin/main",
+            "repo": "git@github.com:vologo/vue_shop_server.git",
+            "path": "/www/shop/production",
             "ssh_options": "StrictHostKeyChecking=no",
-            //构建在发布
             "post-deploy": "npm install --registry=https://registry.npm.taobao.org && grunt build && pm2 startOrRestart ecosystem.json --env production",
             "env": {
                 "NODE_ENV": "production"
@@ -26,3 +25,4 @@
         }
     }
 }
+
